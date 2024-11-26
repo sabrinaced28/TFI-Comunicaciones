@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluir CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: rgb(121, 31, 91);">
+        <a class="navbar-brand" href="#" style="color: white;">TFI Comunicaciones</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item ">
+        <a class="nav-link" href="index.html" style="color: white;">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+        <a class="nav-link active" aria-current="page" href="manualUsuario.html" style="color: white;">Manual de usuario</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="manualProg.html" style="color: white;">Manual de programación</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="programador.html" style="color: white;">Desarrollador</a>
+        </li>
+        </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container mt-5">
+        <!-- Header -->
+        <h1 class="text-center">Manual de Usuario</h1>
+        <hr>
+
+        <!-- Introducción -->
+        <section class="section">
+            <h2>Introducción</h2>
+            <p>
+                Bienvenido a la guía de usuario de nuestra aplicación web de modulación de señales. Esta herramienta está diseñada para
+                facilitar la comprensión y la visualización de diferentes técnicas de modulación (ASK, FSK, BPSK, 4PSK, QPSK, 8PSK, 4QAM, y 8QAM). 
+                Proporciona una interfaz interactiva donde puedes explorar señales digitales y moduladas con un enfoque educativo.
+            </p>
+        </section>
+
+        <!-- Características -->
+        <section class="section">
+            <h2>Características principales</h2>
+            <ul>
+                <li><b>Generación de señales digitales:</b> Basada en una secuencia binaria introducida por el usuario.</li>
+                <li><b>Visualización de señales moduladas:</b> Soporte para ASK, FSK, BPSK, 4PSK, QPSK, 8PSK, 4QAM y 8QAM.</li>
+                <li><b>Diagrama de constelación:</b> Representación gráfica para modulaciones PSK y QAM.</li>
+                <li><b>Tablas de verdad:</b> Indicando las fases asociadas a cada combinación de bits.</li>
+                <li><b>Interfaz interactiva:</b> Permite limpiar la pantalla y reiniciar las configuraciones con un solo clic.</li>
+            </ul>
+        </section>
+
+        <!-- Instrucciones de uso -->
+        <section class="section">
+            <h2>Instrucciones de uso</h2>
+            <ol>
+                <li>Selecciona el tipo de modulación deseada en el menú desplegable de <b>Modulación</b>.</li>
+                <li>Ingresa una <b>secuencia de bits binarios</b> (por ejemplo, <code>10101010</code>) en el campo correspondiente.</li>
+                <li>Haz clic en el botón <b>Dibujar señal</b> para generar las gráficas correspondientes.</li>
+                <li>Para modulaciones PSK o QAM, revisa el diagrama de constelación y la tabla de verdad.</li>
+                <li>Utiliza el botón <b>Limpiar pantalla</b> para reiniciar el proceso y comenzar de nuevo.</li>
+            </ol>
+        </section>
+
+        <!-- Descripción de elementos -->
+        <section class="section">
+            <h2>Descripción de los elementos</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li><b>Menú de navegación:</b> Accede a diferentes secciones de la aplicación.</li>
+                        <li><b>Selector de modulación:</b> Menú desplegable para elegir el tipo de modulación.</li>
+                        <li><b>Campo de texto:</b> Introduce la secuencia binaria (0s y 1s).</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li><b>Gráfica de señal digital:</b> Visualización de la señal ingresada.</li>
+                        <li><b>Gráfica de señal modulada:</b> Representación de la señal según el tipo de modulación.</li>
+                        <li><b>Diagrama de constelación:</b> Muestra las fases asociadas a combinaciones de bits (solo PSK y QAM).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notas importantes -->
+        <section class="section">
+            <h2>Notas importantes</h2>
+            <ul>
+                <li>Asegúrate de ingresar <span class="highlight">solo bits binarios</span> en el campo de texto.</li>
+                <li>Si ingresas caracteres inválidos, la aplicación te mostrará un mensaje de error.</li>
+                <li>Para modulaciones PSK y QAM, utiliza secuencias que coincidan con los esquemas soportados (2 bits para 4PSK, 3 bits para 8PSK, etc.).</li>
+                <li>Los gráficos se actualizan automáticamente cada vez que se realiza un nuevo cálculo.</li>
+            </ul>
+        </section>
+
+        <!-- Contacto -->
+        <section class="section">
+            <h2>Contacto</h2>
+            <p>
+                Si tienes dudas o necesitas soporte técnico, contacta al desarrollador a través del menú <b>Información del desarrollador</b>.
+            </p>
+        </section>
+
+       
+    </div>
+    <hr>
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>&copy; 2024 TFI Comunicaciones | Todos los derechos reservados.</p>
+    </footer>
+
+
+    <!-- Incluir jQuery y JavaScript de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

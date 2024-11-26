@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluir CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: rgb(121, 31, 91);">
+        <a class="navbar-brand" href="#" style="color: white;">TFI Comunicaciones</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+        <a class="nav-link" href="index.html" style="color: white;">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="manualUsuario.html" style="color: white;">Manual de usuario</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="manualProg.html" style="color: white;">Manual de programación</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="programador.html" style="color: white;">Desarrollador</a>
+        </li>
+        </ul>
+        </div>
+        </nav>
+
+        <!-- Contenido principal -->
+         <div class="section">
+        
+        <h1 class="text-center mb-4 mt-5">Manual de Programación</h1>
+        <p class="text-center">Este manual detalla el funcionamiento del código para una aplicación web de visualización de modulaciones digitales. Incluye la estructura HTML, lógica en JavaScript y detalles de personalización.</p>
+        </div>
+        <!-- Introducción -->
+        <div class="section">
+            <h2>Introducción</h2>
+            <p>Este proyecto implementa una aplicación web que genera señales digitales y moduladas utilizando los tipos de modulación ASK, FSK, BPSK y 4PSK. El frontend está construido con HTML y CSS, mientras que la lógica está escrita en JavaScript.</p>
+        </div>
+
+        <!-- Estructura del Proyecto -->
+        <div class="section">
+            <h2>Estructura del Proyecto</h2>
+            <p>El proyecto se compone de los siguientes archivos:</p>
+            <ul>
+                <li><b>HTML:</b> Estructura de la página web (archivo principal).</li>
+                <li><b>CSS:</b> Estilos opcionales y personalizados.</li>
+                <li><b>JavaScript:</b> Lógica del programa para dibujar las señales.</li>
+            </ul>
+        </div>
+
+        <!-- Estructura HTML -->
+        <div class="section">
+            <h2>Estructura HTML</h2>
+            <p>El archivo principal contiene elementos esenciales como la barra de navegación, el formulario de entrada y los lienzos para dibujar las señales. Aquí se destaca el uso de Bootstrap para una mejor presentación.</p>
+
+            <h3>Barra de Navegación</h3>
+            <p> 
+                La barra de navegación proporciona enlaces a las diferentes secciones de la aplicación. Se ha personalizado con colores y estilos específicos. Además incluye enlaces para navegar entre diferentes páginas.
+            </p>
+            <pre><code>&lt;nav class="navbar navbar-expand-sm navbar-light" style="background-color: rgb(121, 31, 91);"&gt;
+    &lt;a class="navbar-brand" href="index.html" style="color: white;"&gt;TFI Comunicaciones&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+
+            <h3>Formulario de Entrada</h3>
+            <p>El formulario permite al usuario ingresar una cadena binaria y seleccionar el tipo de modulación deseado. Al presionar el botón "Dibujar señal", se generan las representaciones gráficas correspondientes.</p>
+            <pre><code>&lt;input type="text" class="form-control" id="binaryInput" placeholder="Ejemplo: 11000110"&gt;
+&lt;button class="btn btn-primary mt-2" id="generateButton"&gt;Dibujar señal&lt;/button&gt;
+&lt;button class="btn btn-secondary mt-2 ml-2" id="clearButton"&gt;Limpiar pantalla&lt;/button&gt;
+</code></pre>
+
+            <h3>Canvases para Dibujar</h3>
+            <p>Se utilizan dos lienzos HTML5 para dibujar las señales digitales y moduladas. Estos elementos se actualizan dinámicamente con la información generada por el código JavaScript.</p>
+            <pre><code>&lt;canvas id="signalCanvas" width="800" height="200" style="border: 1px solid black;"&gt;&lt;/canvas&gt;
+&lt;canvas id="modulatedCanvas" width="800" height="200" style="border: 1px solid black;"&gt;&lt;/canvas&gt;
+</code></pre>
+        </div>
+
+        <!-- Lógica JavaScript -->
+        <div class="section">
+            <h2>Lógica JavaScript</h2>
+            <p>El archivo JavaScript contiene funciones principales para validar la entrada, dibujar señales digitales y generar modulaciones. La lógica está integrada en el archivo <code>index.html</code>.</p>
+            <div class="section">
+            <h3>Referencias a Elementos HTML</h3>
+            <p>Se obtienen referencias a los elementos HTML relevantes para interactuar con ellos desde JavaScript.</p>
+            <pre><code>const binaryInput = document.getElementById('binaryInput');
+const modulationSelect = document.getElementById('modulationSelect');
+const generateButton = document.getElementById('generateButton');
+const signalCanvas = document.getElementById('signalCanvas');
+const modulatedCanvas = document.getElementById('modulatedCanvas');
+</code></pre> </div>
+
+            <h3>Función Principal</h3>
+            <p>Esta función se ejecuta al presionar el botón "Dibujar señal". Valida la entrada y llama a las funciones correspondientes según el tipo de modulación.</p>
+            <pre><code>generateButton.addEventListener("click", function () {
+    const modulationType = modulationSelect.value;
+    const binaryData = binaryInput.value.trim();
+
+    if (!/^[01]+$/.test(binaryData)) {
+        alert("Por favor, ingrese solo una cadena binaria.");
+        return;
+    }
+
+    const signalCtx = signalCanvas.getContext('2d');
+    const modulatedCtx = modulatedCanvas.getContext('2d');
+    signalCtx.clearRect(0, 0, modulatedCanvas.width, modulatedCanvas.height);
+    modulatedCtx.clearRect(0, 0, modulatedCanvas.width, modulatedCanvas.height);
+
+    drawDigitalSignal(signalCtx, binaryData);
+
+    switch (modulationType) {
+        case "ASK":
+            drawASKSignal(modulatedCtx, binaryData);
+            break;
+        case "FSK":
+            drawFSKSignal(modulatedCtx, binaryData);
+            break;
+        case "BPSK":
+            drawBPSKSignal(modulatedCtx, binaryData);
+            break;
+        case "4PSK":
+            draw4PSKSignal(modulatedCtx, binaryData);
+            break;
+        case "QPSK":
+            drawQPSKSignal(modulatedCtx, binaryData);
+            break;
+        case "8PSK": 
+            draw8PSKSignal(modulatedCtx, binaryData);
+            break;
+        case "4QAM":
+            draw4QAMSignal(modulatedCtx, binaryData);
+            break;
+        case "8QAM":
+            draw8QAMSignal(modulatedCtx, binaryData);
+            break;
+        default:
+            alert("Tipo de modulación no soportada.");
+    }
+});
+</code></pre>
+        </div>
+
+        <!-- Funciones de Modulación -->
+        <div class="section">
+            <h2>Funciones de Modulación</h2>
+            <h3>Ejemplo: ASK</h3>
+            <p>La función <code>drawASKSignal</code> dibuja una señal modulada en amplitud (ASK) en el lienzo proporcionado. Utiliza la amplitud para representar los bits "1" y "0" de la secuencia binaria.</p>
+            <pre><code>function drawASKSignal(ctx, binaryData) {
+    const width = ctx.canvas.width;
+    const height = ctx.canvas.height;
+    const timeStep = width / binaryData.length;
+
+    ctx.beginPath();
+    ctx.strokeStyle = "purple";
+
+    let x = 0;
+    binaryData.split("").forEach((bit) => {
+        const amplitude = bit === "1" ? 50 : 20;
+        for (let t = 0; t < timeStep; t++) {
+            const y = height / 2 - amplitude * Math.sin((2 * Math.PI * t) / timeStep);
+            ctx.lineTo(x + t, y);
+        }
+        x += timeStep;
+    });
+
+    ctx.stroke();
+}
+</code></pre>
+        </div>
+        <div class="section">
+            <h3>Tablas de verdad</h3>
+            <p>Para modulaciones PSK y QAM, se incluyen tablas de verdad que muestran las fases asociadas a cada combinación de bits. Estas tablas se generan dinámicamente y se muestran en la interfaz.</p>
+            <pre><code>function draw4PSKTruthTable(ctx) {
+                function updateTruthTable(modulationType){
+                    const tableData = truthTables[modulationType] || [];
+                    truthTableBody.innerHTML = tableData.map(row => 
+                        `
+                        <tr>
+                            <td>${row.bits}</td>
+                            <td>${row.phase}</td>
+                        </tr>
+                    `).join('');
+                }
+            }
+            </code></pre>
+        </div>
+            <div class="section">
+                <h3>Diagramas de constelaciones</h3>
+                <p>Para modulaciones PSK y QAM, se incluyen diagramas de constelaciones que muestran las fases asociadas a cada combinación de bits. Estos diagramas se generan dinámicamente y se muestran en la interfaz.</p>
+                <pre><code>
+                    function drawConstellationDiagram() {
+                        const ctx = constellationCanvas.getContext('2d');
+                        const width = constellationCanvas.width;
+                        const height = constellationCanvas.height;
+                        const centerX = width / 2;
+                        const centerY = height / 2;
+                        const radius = 5;
+            
+                        // Limpiar el canvas
+                        ctx.clearRect(0, 0, width, height);
+            
+                        // Dibujar ejes
+                        ctx.beginPath();
+                        ctx.strokeStyle = "black";
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(centerX, 0);
+                        ctx.lineTo(centerX, height);
+                        ctx.moveTo(0, centerY);
+                        ctx.lineTo(width, centerY);
+                        ctx.stroke();
+            
+                        // Obtener el tipo de modulación seleccionado
+                        const modulationType = modulationSelect.value;
+                        let points = [];
+            
+                        switch (modulationType) {
+                            case "4PSK":
+                                points = [
+                                    { x: centerX + 80, y: centerY - 80, label: "00" },
+                                    { x: centerX - 80, y: centerY - 80, label: "01" },
+                                    { x: centerX - 80, y: centerY + 80, label: "10" },
+                                    { x: centerX + 80, y: centerY + 80, label: "11" }
+                                ];
+                                break;
+                            case "QPSK":
+                                points = [
+                                    { x: centerX + 80, y: centerY - 80, label: "10" },
+                                    { x: centerX - 80, y: centerY - 80, label: "00" },
+                                    { x: centerX - 80, y: centerY + 80, label: "01" },
+                                    { x: centerX + 80, y: centerY + 80, label: "11" }
+                                ];
+                                break;          
+                            case "8PSK":
+                                points = [
+                                    { x: centerX + 80, y: centerY, label: "000" },
+                                    { x: centerX + 65, y: centerY - 65, label: "001" },
+                                    { x: centerX, y: centerY - 80, label: "010" },
+                                    { x: centerX - 65, y: centerY - 65, label: "011" },
+                                    { x: centerX - 80, y: centerY, label: "100" },
+                                    { x: centerX - 65, y: centerY + 65, label: "101" },
+                                    { x: centerX, y: centerY + 80, label: "110" },
+                                    { x: centerX + 65, y: centerY + 65, label: "111" }
+                                ];
+                                break;
+                            case "4QAM":
+                                points = [
+                                    { x: centerX + 80, y: centerY - 80, label: "00" },
+                                    { x: centerX - 80, y: centerY - 80, label: "01" },
+                                    { x: centerX - 80, y: centerY + 80, label: "10" },
+                                    { x: centerX + 80, y: centerY + 80, label: "11" }
+                                ];
+                                break;
+                                case "8QAM":
+                                    points = [
+                                        // Cuadrado más pequeño
+                                        { x: centerX + 50, y: centerY, label: "000" },
+                                        { x: centerX, y: centerY - 50, label: "010" },
+                                        { x: centerX - 50, y: centerY, label: "100" },
+                                        { x: centerX, y: centerY + 50, label: "110" },
+                                        // Cuadrado más grande
+                                        { x: centerX + 80, y: centerY, label: "001" },
+                                        { x: centerX, y: centerY - 80, label: "011" },
+                                        { x: centerX - 80, y: centerY, label: "101" },
+                                        { x: centerX, y: centerY + 80, label: "111" }
+                                    ];
+                                    break;
+                        }
+            
+                        // Dibujar puntos de constelación
+                        points.forEach(point => {
+                            ctx.beginPath();
+                            ctx.arc(point.x, point.y, radius, 0, 2 * Math.PI);
+                            ctx.fillStyle = "purple";
+                            ctx.fill();
+                            ctx.stroke();
+                            ctx.fillStyle = "black";
+                            ctx.fillText(point.label, point.x + 10, point.y - 10);
+                        });
+                       
+                    }
+                </code></pre>
+            </div>
+            
+
+        <!-- Extensiones -->
+        <div class="section">
+            <h2>Guía para Extensiones</h2>
+            <p>Si necesitas agregar nuevas funcionalidades:</p>
+            <ul>
+                <li><b>Nueva modulación:</b> Agrega una nueva opción en el selector y crea una función específica.</li>
+                <li><b>Validaciones adicionales:</b> Mejora las expresiones regulares para validar la entrada.</li>
+                <li><b>Interactividad:</b> Usa librerías como <code>Chart.js</code> para gráficos avanzados.</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>&copy; 2024 TFI Comunicaciones | Todos los derechos reservados.</p>
+    </footer>
+</div>
+
+    <!-- Incluir jQuery y JavaScript de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

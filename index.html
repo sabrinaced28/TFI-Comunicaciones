@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>TFI-Cedron Sabrina 3k4</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./styles.css"> <!-- Asegúrate de que la ruta sea correcta -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: rgb(121, 31, 91);">
+      <a class="navbar-brand" href="index.html" style="color: white;">TFI Comunicaciones</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+      <a class="nav-link" href="index.html" style="color: white;">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="manualUsuario.html" style="color: white;">Manual de usuario</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="manualProg.html" style="color: white;">Manual de programación</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="programador.html" style="color: white;">Desarrollador</a>
+      </li>
+      </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-4 ">
+      <div class="row">
+      <div class="col-md-12">
+          <h1 class="text-center">Modulación de señales</h1>
+        </div>
+      </div>
+      </div>
+
+      <div class="container mt-4">
+      <div class="row">
+      <div class="col-md-4">
+          <div class="card">
+          <div class="card-header">
+              Seleccionar modulación
+          </div>
+          <div class="card-body">
+              <div class="form-group">
+              <label for="modulationSelect">Modulación:</label>
+              <select class="form-control" id="modulationSelect">
+                  <option value="">Seleccione una modulación</option>
+                  <option value="ASK">ASK</option>
+                  <option value="FSK">FSK</option>
+                  <option value="BPSK">BPSK</option>
+                  <option value="4PSK">4PSK</option>
+                  <option value="QPSK">QPSK</option>
+                  <option value="8PSK">8PSK</option>
+                  <option value="4QAM">4QAM</option>
+                  <option value="8QAM">8QAM</option>
+              </select>
+              </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-8">
+          <div class="card">
+          <div class="card-header">
+              Bits de entrada
+          </div>
+            <div class="card-body">
+                <label for="bitString">Cadena binaria:</label>
+
+              <input type="text" class="form-control" id="binaryInput" placeholder="Ejemplo:11000110">
+
+               <button class="btn btn-primary mt-2" id="generateButton">Dibujar señal</button>
+
+                <button class="btn btn-secondary mt-2 ml-2" id="clearButton">Limpiar pantalla</button>
+
+                 </div>
+            </div>          
+            </div>
+          </div>
+          </div>
+      </div>
+      </div>
+      </div>
+
+      <div class="container mt-4" id="inputSignalContainer" style="display: block;">
+        <h1>Señal ingresada</h1>
+          <canvas id="signalCanvas" width="800" height="200" style="border: 1px solid black;"></canvas>
+      </div>
+
+      <div class="container">
+          <h1>Señal modulada</h1>
+          <canvas id="modulatedCanvas" width="800" height="200" style="border: 1px solid black;"></canvas>
+      </div>
+
+    <div class="container">
+    <div class="row mt-4" id="4pskInfo" style="display: none;">
+        <div class="col-md-6">
+            <h3>Tabla de verdad</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Fase</th>
+                        </tr>
+                    </thead>
+                    <tbody id="truthTableBody">
+                          
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-md-8">
+            <h3>Diagrama de constelación</h3>
+            <canvas id="constellationCanvas" class="constellation-diagram" width="300" height="300" style="border: 1px solid rgb(245, 227, 240);"></canvas>
+        </div>
+          </div>
+    </div> 
+       
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="tfi.js"></script>
+</body>
+</html>
